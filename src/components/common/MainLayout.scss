@@ -1,0 +1,14 @@
+@import './../../style/common.scss';
+
+.MainLayout {
+  margin: 0;
+  padding: 0;
+  background-color: #ccc;
+  min-height: 100vh;
+
+  .content {
+    width: 60%;
+    margin: 0 auto;
+
+  }
+}

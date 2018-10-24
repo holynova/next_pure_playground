@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 // import { } from 'antd';
 // import './Main.scss';
 import Demo from './../src/components/demo/Demo.jsx'
+import TopNav from './../src/components/common/TopNav.jsx'
+import MainLayout from '../src/components/common/MainLayout.jsx';
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,9 @@ class Main extends Component {
   // componentWillReceiveProps(nextProps) { }
   render() {
     return (
-      <Demo></Demo>
+      <MainLayout>
+        <Demo></Demo>
+      </MainLayout>
       // <div>Main</div>
     );
   }

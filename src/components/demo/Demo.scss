@@ -2,6 +2,9 @@
 $color:#f60;
 
 .demo {
+  width: 60%;
+  margin: 0 auto;
+  background-color: #fff;
 
   .title {
     background-color: $color;
@@ -15,5 +18,11 @@ $color:#f60;
     li {
       color: $color;
     }
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+    background-image: url(/static/imgs/bag_logo.png);
   }
 }

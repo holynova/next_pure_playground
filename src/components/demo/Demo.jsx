@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import Router from 'next/router'
 import { Card, Row, Col, DatePicker } from 'antd';
 import './Demo.scss';
 import DemoSon from './DemoSon.jsx';
-
+// import 'antd/dist/antd.less'
 class Demo extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,10 @@ class Demo extends Component {
 
   componentWillReceiveProps(nextProps) { }
 
+  onBtnClick = () => {
+    console.log('router' + this.props.router)
+    Router.push('/about')
+  }
   render() {
     const color = 'blue';
     return (
@@ -31,7 +36,10 @@ class Demo extends Component {
         <Card>
           <DatePicker></DatePicker>
         </Card>
-
+        <div className='img' ></div>
+        <img src='./../../../static/imgs/bag_logo.png' ></img>
+        <img src='/static/imgs/bag_logo.png' ></img>
+        <button onClick={this.onBtnClick} >jump</button>
         <DemoSon />
       </div>
     );
