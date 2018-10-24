@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-// import { } from 'antd';
-// import './Demo.scss';
+import { Card, Row, Col, DatePicker } from 'antd';
+import './Demo.scss';
 import DemoSon from './DemoSon.jsx';
 
 class Demo extends Component {
@@ -9,7 +9,7 @@ class Demo extends Component {
     super(props);
     this.state = {};
   }
-
+  j
   componentDidMount() { }
 
   componentWillReceiveProps(nextProps) { }
@@ -28,22 +28,11 @@ class Demo extends Component {
           <li>04</li>
           <li>05</li>
         </ul>
-        <DemoSon />
-        <style jsx>{`
-        li{
-          color:${color};
-        }
-         .demo{
-            width: 50%;
-            margin:0 auto;
-            }
-          
-          .list{
-            list-style-type:none;
-          }
+        <Card>
+          <DatePicker></DatePicker>
+        </Card>
 
-        `}
-        </style>
+        <DemoSon />
       </div>
     );
   }

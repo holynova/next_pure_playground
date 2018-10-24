@@ -1,13 +1,18 @@
 {
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "antd": "^3.10.1",
     "next": "^7.0.2",
+    "node-sass": "^4.9.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
   "name": "next_pure_playground",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-import": "^1.10.0"
+  },
   "scripts": {
     "dev": "next -p 3000",
     "build": "next build",

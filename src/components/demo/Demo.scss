@@ -1,0 +1,19 @@
+@import './../../style/common.scss';
+$color:#f60;
+
+.demo {
+
+  .title {
+    background-color: $color;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .list {
+    li {
+      color: $color;
+    }
+  }
+}
