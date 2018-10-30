@@ -4,20 +4,30 @@ import Router from 'next/router'
 import { Card, Row, Col, DatePicker } from 'antd';
 import './Demo.scss';
 import DemoSon from './DemoSon.jsx';
-// import 'antd/dist/antd.less'
+import { log } from './../../utils/debugTools'
+import 'antd/dist/antd.css'
+import van from './../../assets/van.jpg'
+
 class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  j
-  componentDidMount() { }
 
+  componentDidMount() {
+    console.log('demo didmount')
+  }
   componentWillReceiveProps(nextProps) { }
-
   onBtnClick = () => {
-    console.log('router' + this.props.router)
-    Router.push('/about')
+    log('clicked')
+    // console.log('pathName: ' + JSON.stringify(Router, null, 2))
+    console.log('pathName: ' + JSON.stringify(this.props.router, null, 2))
+    Router.push({
+      pathname: '/about', query: {
+        name: 'sang',
+        age: 31
+      }
+    })
   }
   render() {
     const color = 'blue';
@@ -27,24 +37,28 @@ class Demo extends Component {
           Demo
         </h1>
         <ul className="list">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
+
         </ul>
         <Card>
           <DatePicker></DatePicker>
         </Card>
         <div className='img' ></div>
+        <div className='img van ' ></div>
         <img src='./../../../static/imgs/bag_logo.png' ></img>
         <img src='/static/imgs/bag_logo.png' ></img>
+        <img width='200' src={require('./../../assets/van.jpg')} alt='van'></img>
+        <img width='200' src={van} alt='van'></img>
         <button onClick={this.onBtnClick} >jump</button>
         <DemoSon />
-      </div>
+      </div >
     );
   }
 }
 Demo.propTypes = {};
 Demo.defaultProps = {};
+Demo.getInitialProps = async function (props) {
+  console.log('demo getInitialProps')
+  return {}
+}
+
 export default Demo;

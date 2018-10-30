@@ -17,10 +17,19 @@ class TopNav extends Component {
         {/* TopNav */}
         <ul>
           <li>
-            <Link href='./' >home</Link>
+            <Link href='/' ><a>home</a></Link>
           </li>
           <li>
-            <Link href='./about'>about</Link>
+            <Link href='/about'><a>about</a></Link>
+          </li>
+          <li>
+            <Link href='/sub/a'><a>A</a></Link>
+          </li>
+          <li>
+            <Link href='/sub/b'><a>B</a></Link>
+          </li>
+          <li>
+            <Link href='/sub/c/c'><a>C</a></Link>
           </li>
         </ul>
       </div>

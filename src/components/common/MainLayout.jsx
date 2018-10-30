@@ -4,8 +4,16 @@ import Head from 'next/head'
 import TopNav from './TopNav';
 // import { } from 'antd';
 import './MainLayout.scss';
-
+import Router from 'next/router'
+import log from './../../utils/debugTools'
 // import './../../style/common.scss'
+// import Head from 'next/head'
+
+
+// Router.events.on('routeChangeComplete', url => {
+//   console.log('router changed:', url)
+// })
+
 
 class MainLayout extends Component {
   constructor(props) {
@@ -17,6 +25,9 @@ class MainLayout extends Component {
   render() {
     return (
       <div className='MainLayout' >
+        {/* <Head>
+          <title>next demo</title>
+        </Head> */}
         <TopNav></TopNav>
         <div className="content">
           {this.props.children}

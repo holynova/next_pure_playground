@@ -2,12 +2,30 @@
 $color:#f60;
 
 .demo {
-  width: 60%;
+  // width: 60%;
   margin: 0 auto;
   background-color: #fff;
 
+  @media (min-width: 1px) and (max-width: 600px) {
+    background-color: red;
+  }
+
+  @media (min-width: 601px) and (max-width: 1200px) {
+    background-color: green;
+  }
+
+  @media (min-width: 1201px) {
+    background-color: blue;
+  }
+
+  // @media (max-width: 1200px) {
+  //   background-color: gray;
+  // }
+
   .title {
     background-color: $color;
+    margin: 0;
+    padding: 0;
   }
 
   ul {
@@ -23,6 +41,12 @@ $color:#f60;
   .img {
     width: 100px;
     height: 100px;
+    background-position: 50% 50%;
+    background-size: 100% auto;
     background-image: url(/static/imgs/bag_logo.png);
+  }
+
+  .img.van {
+    background-image: url(./../../assets/van.jpg);
   }
 }
