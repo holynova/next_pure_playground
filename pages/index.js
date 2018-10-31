@@ -6,6 +6,8 @@ import Demo from './../src/components/demo/Demo.jsx'
 import TopNav from './../src/components/common/TopNav.jsx'
 import MainLayout from '../src/components/common/MainLayout.jsx';
 import { ajax, ajaxAsync } from './../src/utils/request.js'
+import { connect } from 'react-redux'
+import Counter from '../src/components/counter/Counter.jsx';
 
 const name = "index.js"
 class Main extends Component {
@@ -20,6 +22,7 @@ class Main extends Component {
     console.log(name + ' did mount')
     // this.requestData()
   }
+
 
   requestData = async () => {
     console.log('request data ')
@@ -62,8 +65,9 @@ class Main extends Component {
   render() {
     return (
       <MainLayout>
-        <Demo></Demo>
-        {this.genUserPart(this.state.data)}
+        {/* <Demo></Demo> */}
+        <Counter></Counter>
+        {/* {this.genUserPart(this.state.data)} */}
       </MainLayout>
       // <div>Main</div>
     );
@@ -85,6 +89,10 @@ Main.getInitialProps = async function (props) {
   // }
   // return { data }
 }
+
+const mapStateToProps = (state) => {
+  return state
+}
 Main.propTypes = {};
 Main.defaultProps = {};
-export default Main;
+export default connect(mapStateToProps)(Main);
