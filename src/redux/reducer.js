@@ -37,7 +37,6 @@ const post = (state = { loading: false, list: [] }, action) => {
     case 'request_success':
       return {
         ...state,
-        loading: false,
         list: action.payload.list
       }
 
@@ -45,7 +44,6 @@ const post = (state = { loading: false, list: [] }, action) => {
       console.log(action.payload.err)
       return {
         ...state,
-        loading: false,
       }
     default:
       return state
