@@ -1,32 +1,46 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
-const requestUsers = () => {
-  const url = 'https://jsonplaceholder.typicode.com/users'
-  return axios.get(url)
-    .then(res => {
-      return res
-    })
-    .catch(err => err)
+// const requestUsers = () => {
+//   const url = 'https://jsonplaceholder.typicode.com/users'
+//   return axios.get(url)
+//     .then(res => {
+//       return res
+//     })
+//     .catch(err => err)
+// }
+
+function* getTodoList(action) {
+  const url = 'https://jsonplaceholder.typicode.com/todos'
+  yield put({ type: 'setLoading' })
+  const res = yield axios({ url })
+  yield put({ type: 'clearLoading' })
+  yield put({
+    type: 'save',
+    payload: { todoList: res.data }
+  })
+
 }
 
 export function* getUsers(action) {
-  console.log('action', action)
-  let { type, payload } = action
+  const url = 'https://jsonplaceholder.typicode.com/users'
   yield put({ type: 'setLoading' })
-  const res = yield axios({ url: payload.url })
-  console.log('res.data ', res.data)
+  const res = yield axios({ url })
   yield put({ type: 'clearLoading' })
-  const list = res.data
+  // const list = res.data
   // const list = [
   //   { id: 1, name: 'foo' + Math.random() },
   //   { id: 2, name: 'bar' + Math.random() },
   // ]
-  yield put({ type: 'saveUsers', payload: { list } })
+  yield put({
+    type: 'save',
+    payload: { userList: res.data }
+  })
 }
 
 function* rootSaga() {
-  yield takeEvery('getUsers', getUsers)
+  yield takeLatest('getUsers', getUsers)
+  yield takeLatest('getTodoList', getTodoList)
 }
 
 export default rootSaga

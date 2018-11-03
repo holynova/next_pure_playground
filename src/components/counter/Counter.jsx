@@ -59,7 +59,7 @@ class Counter extends Component {
     })
   }
 
-  genList = (list) => {
+  genSimpleList = (list) => {
     let result = []
     if (Array.isArray(list) && list.length > 0) {
       result = list.map(item => (<li key={item}>{item}</li>))
@@ -86,6 +86,23 @@ class Counter extends Component {
     // return result.slice(0, 10)
   }
 
+  genList = (list, nameKey = 'name', idKey = 'id', limit = 10, title = '数据') => {
+    let result = []
+    if (Array.isArray(list) && list.length > 0) {
+      result = list.map(item => (<li key={item[idKey]}>{item[nameKey]}</li>))
+    }
+    return (
+      <div>
+        <h3>{title}列表</h3>
+        {this.props.loading ? 'loading...' : null}
+        <ul>
+          {
+            result.slice(0, limit)
+          }
+        </ul>
+      </div>
+    )
+  }
 
   requestList = () => {
     let url = 'https://jsonplaceholder.typicode.com/posts'
@@ -98,6 +115,14 @@ class Counter extends Component {
     this.props.dispatch({
       type: 'getUsers',
       payload: { url }
+    })
+  }
+  requestTodoList = () => {
+    // const url = 'https://jsonplaceholder.typicode.com/users'
+
+    this.props.dispatch({
+      type: 'getTodoList',
+      // payload: { url }
     })
   }
 
@@ -121,25 +146,26 @@ class Counter extends Component {
 
         <div>
           <h3>手动控制list</h3>
-          {this.genList(this.props.list)}
+          {this.genSimpleList(this.props.list)}
         </div>
 
         <hr></hr>
         <div>
+          <h3>thunk异步请求posts</h3>
           <button onClick={this.requestList} >异步请求</button>
-          <h3>远程请求List</h3>
           {this.props.loading ? '正在加载' : ''}
-          {this.genPostList(this.props.posts)}
+          {this.genList(this.props.posts, 'title')}
         </div>
         <hr></hr>
         <div>
-          <button onClick={this.requestUserList} >saga异步请求</button>
-          <h3>远程请求UserList</h3>
+          <h3>saga异步请求</h3>
+          <button onClick={this.requestUserList} >请求users</button>
+          <button onClick={this.requestTodoList} >请求todoList</button>
           {this.props.userLoading ? '正在加载' : ''}
-          {this.genUserList(this.props.userList)}
+          {this.genList(this.props.userList, 'name', 'id', 10, 'user')}
+          <hr />
+          {this.genList(this.props.todoList, 'title', 'id', 10, 'todo')}
         </div>
-
-
       </div>
 
     );
@@ -155,42 +181,41 @@ function mapStateToProps(state) {
     list: state.list.list,
 
     posts: state.post.list,
-    loading: state.post.loading,
-
-    userLoading: state.user.userLoading,
+    loading: state.common.loading,
+    // userLoading: state.user.userLoading,
     userList: state.user.userList,
-
+    todoList: state.user.todoList,
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    handleIncrement: () => {
-      dispatch({
-        type: 'increment',
-        payload: {
-          step: +10,
-        }
-      })
-    },
-    handleDecrement: () => {
-      dispatch({
-        type: 'increment',
-        payload: {
-          step: -10,
-        }
-      })
-    },
-    handleRecover: () => {
-      dispatch({
-        type: 'recover',
-        payload: {
-          target: 99,
-        }
-      })
-    }
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     handleIncrement: () => {
+//       dispatch({
+//         type: 'increment',
+//         payload: {
+//           step: +10,
+//         }
+//       })
+//     },
+//     handleDecrement: () => {
+//       dispatch({
+//         type: 'increment',
+//         payload: {
+//           step: -10,
+//         }
+//       })
+//     },
+//     handleRecover: () => {
+//       dispatch({
+//         type: 'recover',
+//         payload: {
+//           target: 99,
+//         }
+//       })
+//     }
+//   }
+// }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 export default connect(mapStateToProps)(Counter);

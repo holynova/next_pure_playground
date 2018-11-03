@@ -54,17 +54,28 @@ const post = (state = { loading: false, list: [] }, action) => {
 }
 
 // 用saga的方式来处理, 获取users数据
-const user = (state = { userLoading: false, userList: [] }, action) => {
+const user = (state = {}, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'setLoading':
-      return { ...state, userLoading: true }
-    case 'clearLoading':
-      return { ...state, userLoading: false }
-    case 'saveUsers':
-      return { ...state, userList: payload.list }
+    // case 'setLoading':
+    //   return { ...state, userLoading: true }
+    // case 'clearLoading':
+    //   return { ...state, userLoading: false }
+    case 'save':
+      return { ...state, ...action.payload }
     // case 'getUsers':
     //   break;
+    default:
+      return state
+  }
+}
+
+const common = (state = { loading: false }, action) => {
+  switch (action.type) {
+    case 'setLoading':
+      return { ...state, loading: true }
+    case 'clearLoading':
+      return { ...state, loading: false }
     default:
       return state
   }
@@ -75,6 +86,7 @@ const reducer = combineReducers({
   list,
   post,
   user,
+  common,
 })
 
 // export default list
