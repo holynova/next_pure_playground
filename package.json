@@ -6,12 +6,15 @@
     "axios": "^0.18.0",
     "next": "^7.0.2",
     "next-images": "^1.0.1",
+    "next-redux-saga": "^3.0.0",
     "next-redux-wrapper": "^2.0.0",
     "node-sass": "^4.9.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.1.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "redux-thunk": "^2.3.0"
   },
   "name": "next_pure_playground",
   "version": "1.0.0",

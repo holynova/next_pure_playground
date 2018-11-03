@@ -15,18 +15,67 @@ const counter = (state = { cnt: 99 }, action) => {
   }
 }
 
-const foo = (state, action) => {
+const list = (state = { list: ['foo', 'bar'] }, action) => {
   switch (action.type) {
-    case 'foo':
-      return { ...state, ...action.payload }
+    case 'push':
+      return { ...state, list: [...state.list, action.payload.item] }
     default:
       return state;
   }
 }
 
+// const requestPost = () => {
+
+// }
+
+// 发请求
+const post = (state = { loading: false, list: [] }, action) => {
+  switch (action.type) {
+    case 'request_start':
+      return { ...state, loading: true }
+
+    case 'request_success':
+      return {
+        ...state,
+        loading: false,
+        list: action.payload.list
+      }
+
+    case 'request_fail':
+      console.log(action.payload.err)
+      return {
+        ...state,
+        loading: false,
+      }
+    default:
+      return state
+
+  }
+}
+
+// 用saga的方式来处理, 获取users数据
+const user = (state = { userLoading: false, userList: [] }, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case 'setLoading':
+      return { ...state, userLoading: true }
+    case 'clearLoading':
+      return { ...state, userLoading: false }
+    case 'saveUsers':
+      return { ...state, userList: payload.list }
+    // case 'getUsers':
+    //   break;
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   counter,
-  foo,
+  list,
+  post,
+  user,
 })
 
-export default counter
+// export default list
+export default reducer
